@@ -1,0 +1,6 @@
+{
+  "orchestrator_url": "http://127.0.0.1:8000",
+  "bot_venv_path": "C:\\Users\\fisher46109\\PycharmProjects\\sub_process\\venv\\Scripts\\python.exe",
+  "bot_path": "C:\\Users\\fisher46109\\PycharmProjects\\sub_process\\sub_process.py",
+  "time_between_requests": 1
+}
