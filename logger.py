@@ -24,6 +24,5 @@ class Logger:
         with open(file_path, 'a', encoding='utf-8') as log_file:
             log_file.write(f'{log_time};{message}\n')
 
-
-    def remove_old_logs(self):  # TODO remove
+    def remove_old_logs(self):  # TODO write code
         pass

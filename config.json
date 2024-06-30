@@ -1,6 +1,10 @@
 {
   "orchestrator_url": "http://127.0.0.1:8000",
-  "bot_venv_path": "C:\\Users\\fisher46109\\PycharmProjects\\sub_process\\venv\\Scripts\\python.exe",
-  "bot_path": "C:\\Users\\fisher46109\\PycharmProjects\\sub_process\\sub_process.py",
-  "time_between_requests": 1
+  "bot_venv_path": "C:\\Users\\{username}\\Documents\\BOTS\\VENVS\\UniversalBotVenv\\Scripts\\python.exe",
+  "bot_path": "C:\\Users\\{username}\\Documents\\BOTS\\BOTS",
+  "temp_path": "C:\\Users\\{username}\\Documents\\BOTS\\TEMP",
+  "time_between_requests": 1,
+  "max_download_bot_retries": 3,
+  "time_to_next_download_try": 10,
+  "time_if_connection_error": 10
 }
