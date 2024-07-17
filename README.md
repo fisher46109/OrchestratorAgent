@@ -1,7 +1,7 @@
 # OrchestratorAgent
 ## An application designed for remote communication with the Orchestrator through querying its API and performing operations on bots (subprocesses) on the machine where the Agent is located.
 
-### To install and run the Django application, follow these steps: 
+### To install and run the application, follow these steps: 
 1. **Clone the repository**: Download the source code from GitHub and navigate to the project directory.
 2. **Create and activate a virtual environment**: Isolates the project's dependencies to avoid conflicts with other projects.
 3. **Install the required packages**: Use `pip` to install all dependencies listed in the `requirements.txt` file.
