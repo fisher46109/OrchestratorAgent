@@ -20,7 +20,7 @@ def main():
             """DO NOTHING, If this doesn't work - nothing will save us..."""
     finally:
         try:
-            print(str(output)) # TODO other operations to handle fatal
+            print(str(output))
         except:
             pass
 

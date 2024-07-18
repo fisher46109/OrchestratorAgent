@@ -99,6 +99,7 @@ class BotHandler:
         self.robot_update_flag = RobotUpdateFlag.IDLE
 
         subprocess_path = self.get_subprocess_path_from_main_file_location()
+        print(subprocess_path)
         self.bot = subprocess.Popen([
                 app.config.bot_venv_path,
                 subprocess_path
@@ -108,7 +109,6 @@ class BotHandler:
             stderr=subprocess.PIPE,
             text=True
         )
-        print(subprocess_path)
         if not self.input_thread:
             self.input_thread = threading.Thread(target=self.read_from_bot, daemon=True)
             self.input_thread.start()
@@ -182,8 +182,8 @@ class BotHandler:
             app.logger.log(f"New bot unzipped successfully")
             self.delete_temp_folder()
             app.logger.log(f"Robot updated successfully")
-            raise Exception("Wysrało się")
             self.robot_update_flag = RobotUpdateFlag.IDLE
+            self.result = "Robot updated"
             app.download_retries = 0
         except Exception as e:
             raise UpdateException(e)

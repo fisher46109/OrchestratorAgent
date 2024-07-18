@@ -8,4 +8,4 @@ config: Config | None = None
 logger: Logger | None = None
 request_func: RequestFunctions | None = None
 
-download_retries = 0    # TODO can I define global variables here?
+download_retries = 0

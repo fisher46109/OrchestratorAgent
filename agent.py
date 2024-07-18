@@ -11,7 +11,7 @@ from requests.exceptions import ConnectionError, HTTPError
 def execute():
     app.config = Config()
     app.config.load_config()
-    print(app.config)
+    # print(app.config)
 
     app.logger = Logger()
     app.logger.log("Start of working agent")
@@ -25,7 +25,7 @@ def execute():
     while True:
         try:
             app.bot.set_control_values(app.request_func.get_info())
-            print(app.bot)
+            # print(app.bot)
             app.bot.update_if_required()
             app.bot.choose_operation()
             app.request_func.update_all()
@@ -37,5 +37,5 @@ def execute():
         except UpdateException as ue:
             update_exception_handler(ue)
         except Exception as e:
-            print(type(e))
+            # print(type(e))
             app.logger.log(str(e))
