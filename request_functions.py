@@ -26,7 +26,6 @@ class RequestFunctions:
 
     def update_all(self):
         """ Update all control values  """
-
         dict_to_send = {Keys.SSK_FLAG: app.bot.ssk_flag,
                         Keys.STATE: app.bot.state,
                         Keys.RESULT: app.bot.result,

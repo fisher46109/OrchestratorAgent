@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import threading
 import zipfile
-
 from custom_exceptions import UpdateException
 from request_functions import StateState, SskState, RobotUpdateFlag, Keys
 import app
@@ -36,12 +35,17 @@ class BotHandler:
 
         self.ssk_flag = values_dict[Keys.SSK_FLAG]
         self.robot_update_flag = values_dict[Keys.ROBOT_UPDATE_FLAG]
+        if self.ssk_flag == SskState.KILL:
+            self.robot_update_flag = RobotUpdateFlag.IDLE
         self.robot_name = values_dict[Keys.ROBOT_NAME]
         # Condition to prevent overwriting state by background threat (async communication with bot)
-        if self.state == StateState.STOPPED and values_dict[Keys.STATE] == StateState.STOPPING:
+        if ((self.state == StateState.STOPPED and values_dict[Keys.STATE] == StateState.STOPPING)
+                or (self.result != "-" and (not self.running) and self.state == StateState.ACTIVE)):
             self.state = StateState.STOPPED
+            self.ssk_flag = SskState.IDLE
         else:
             self.state = values_dict[Keys.STATE]
+
 
     def choose_operation(self):
         """ Choose operation START/STOP/KILL/IDLE based on ssk_flag boolean value """
@@ -70,7 +74,7 @@ class BotHandler:
                 continue
             if data_from_bot.startswith("RESULT:"):
                 self.running = False
-                if self.state == StateState.STOPPING:
+                if self.state == StateState.STOPPING or self.state == StateState.ACTIVE:
                     self.state = StateState.STOPPED
                     app.logger.log("Bot stopped")
                 self.result = data_from_bot[7:]
@@ -99,7 +103,6 @@ class BotHandler:
         self.robot_update_flag = RobotUpdateFlag.IDLE
 
         subprocess_path = self.get_subprocess_path_from_main_file_location()
-        print(subprocess_path)
         self.bot = subprocess.Popen([
                 app.config.bot_venv_path,
                 subprocess_path
@@ -147,6 +150,7 @@ class BotHandler:
 
     def kill(self):
         """ Kill subprocess without waiting for its safe close """
+        self.robot_update_flag = RobotUpdateFlag.IDLE
         if self.running:
             self.ssk_flag = SskState.IDLE
             self.running = False

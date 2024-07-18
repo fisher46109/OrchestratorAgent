@@ -25,7 +25,7 @@ def execute():
     while True:
         try:
             app.bot.set_control_values(app.request_func.get_info())
-            # print(app.bot)
+            print(app.bot)
             app.bot.update_if_required()
             app.bot.choose_operation()
             app.request_func.update_all()
